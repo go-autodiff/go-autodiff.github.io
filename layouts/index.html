@@ -20,10 +20,8 @@
     <div>
       <h1 class="head">Automatic differentiation in pure Go.<br><span class="accent">Planned, wave 2 of the go-scikit roadmap.</span></h1>
       <p class="sub"><b>go-autodiff is the planned home of automatic differentiation for go-scikit</b>: forward and reverse modes, with Jacobian and Hessian helpers that feed <code>go-numerics/optimize</code> gradients and the <code>JacFunc</code> of <code>go-numerics/integrate</code>, both of which take user-supplied derivatives or finite differences today. It is in <b>wave 2</b> (PLAN.md item 8). There is no library and no release yet: this page says what is planned, in which wave, and against which references it will be validated.</p>
-      <div class="cta">
-        <a class="btn btn-primary" href="https://go-autodiff.github.io/docs/">{{ partial "icons/book.html" . }}Read the plan in the documentation →</a>
-        <a class="btn btn-ghost" href="https://github.com/go-scikit/roadmap/blob/main/PLAN.md">{{ partial "icons/github.html" . }}The roadmap (PLAN.md) →</a>
-      </div>
+      {{/* [[params.cta]] in hugo.toml: the kit renders the row */}}
+      {{ partial "cta.html" . }}
       <div class="trust"><span><b>planned</b> wave 2</span><span><b>no</b> release yet</span><span><b>CGO=0</b> pure Go</span></div>
     </div>
     <div class="term">
@@ -53,8 +51,8 @@ plan     go-scikit/roadmap: PLAN.md, STATUS.md</pre>
       <div class="card"><div class="ico">⚙</div><h3>Feeds the solvers</h3><p>Gradients for <code>optimize</code>, and an AD-built Jacobian for the stiff solvers' <code>JacFunc</code> in <code>integrate</code>.</p></div>
       <div class="card"><div class="ico">🧪</div><h3>Checked three ways</h3><p>Against analytic derivatives, against finite differences (<code>CheckGrad</code>), and against JAX as an oracle.</p></div>
       <div class="card"><div class="ico">🧭</div><h3>Honest about Go</h3><p>Go has no operator overloading, so user code is written against an AD type; the design weighs duals, a tape, source transformation and generics.</p></div>
-      <div class="card"><div class="ico">📦</div><h3>Pure Go, CGO=0</h3><p>No cgo, the same results on every architecture the fleet tests.</p></div>
-      <div class="card"><div class="ico">⚖️</div><h3>BSD-3-Clause</h3><p>GPL implementations (pbenner/autodiff) are read-only; Tapenade, Enzyme and JAX are design references and oracles.</p></div>
+      {{ if not (partial "mantra-on.html" $) }}<div class="card"><div class="ico">📦</div><h3>Pure Go, CGO=0</h3><p>No cgo, the same results on every architecture the fleet tests.</p></div>{{ end }}
+      {{ if not (partial "mantra-on.html" $) }}<div class="card"><div class="ico">⚖️</div><h3>BSD-3-Clause</h3><p>GPL implementations (pbenner/autodiff) are read-only; Tapenade, Enzyme and JAX are design references and oracles.</p></div>{{ end }}
     </div>
   </div></section>
 
@@ -90,6 +88,6 @@ plan     go-scikit/roadmap: PLAN.md, STATUS.md</pre>
     </div>
   </div></section>
 
-  <footer><div class="wrap"><span>go-autodiff · <a href="https://github.com/go-autodiff">go-autodiff on GitHub</a> · BSD-3-Clause</span><span>exact · to rounding</span></div></footer>
+  <footer><div class="wrap"><span>go-autodiff · <a href="https://github.com/go-autodiff">go-autodiff on GitHub</a>{{ if not (partial "mantra-on.html" $) }} · BSD-3-Clause{{ end }}</span><span>exact · to rounding</span></div></footer>
 </body>
 </html>
